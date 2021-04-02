@@ -287,8 +287,8 @@ def topup():
         response_data = dict(
             user_id=check_top_up_user.get('user_id'),
             amount_top_up=int(params.get('amount')),
-            balance_before=amount_before,
-            balance_after=amount_after,
+            balance_before=check_top_up_user.get('balance_before'),
+            balance_after=check_top_up_user.get('balance_after'),
             created_date=datetime.datetime.fromtimestamp(check_top_up_user.get('rec_timestamp')/1000).strftime('%Y-%m-%d %H:%M:%S')
         )
 
@@ -375,6 +375,8 @@ def payment():
             payment_id=check_payment.get('payment_id'),
             remarks=check_payment.get('remarks'),
             amount=int(check_payment.get('amount')),
+            balance_before=check_payment.get('balance_before'),
+            balance_after=check_payment.get('balance_after'),
             created_date=datetime.datetime.fromtimestamp(check_payment.get('rec_timestamp')/1000).strftime('%Y-%m-%d %H:%M:%S')
         )
 
@@ -461,6 +463,8 @@ def transfer():
             transfer_id=check_transfer.get('transfer_id'),
             remarks=check_transfer.get('remarks'),
             amount=int(check_transfer.get('amount')),
+            balance_before=check_transfer.get('balance_before'),
+            balance_after=check_transfer.get('balance_after'),
             created_date=datetime.datetime.fromtimestamp(check_transfer.get('rec_timestamp')/1000).strftime('%Y-%m-%d %H:%M:%S')
         )
 
@@ -478,6 +482,8 @@ def formatter_payment(payment_data, transfer_data, topup_data):
             payment_id=item.get('payment_id', ''),
             created_date=datetime.datetime.fromtimestamp(item.get('rec_timestamp') / 1000).strftime('%Y-%m-%d %H:%M:%S'),
             amount=item.get('amount'),
+            balance_before=item.get('balance_before'),
+            balance_after=item.get('balance_after'),
             remarks=item.get('remarks')
         )
         list_payment.append(serialized_data)
@@ -487,6 +493,8 @@ def formatter_payment(payment_data, transfer_data, topup_data):
             transfer_id=item_tf.get('transfer_id', ''),
             created_date=datetime.datetime.fromtimestamp(item_tf.get('rec_timestamp') / 1000).strftime('%Y-%m-%d %H:%M:%S'),
             amount=item_tf.get('amount'),
+            balance_before=item_tf.get('balance_before'),
+            balance_after=item_tf.get('balance_after'),
             remarks=item_tf.get('remarks')
         )
         list_payment.append(data_tf)
@@ -495,7 +503,9 @@ def formatter_payment(payment_data, transfer_data, topup_data):
         data_tp = dict(
             top_up_id=item_tp.get('top_up_id', ''),
             created_date=datetime.datetime.fromtimestamp(item_tp.get('rec_timestamp') / 1000).strftime('%Y-%m-%d %H:%M:%S'),
-            amount=item_tp.get('amount')
+            amount=item_tp.get('amount'),
+            balance_before=item_tp.get('balance_before'),
+            balance_after=item_tp.get('balance_after')
         )
         list_payment.append(data_tp)
 
