@@ -111,13 +111,23 @@ def register():
     
     hash_pin = secret_key(key=str(params.get('pin')), unique_key='BARRUTAMPAN')
 
+    hash_id = str(uuid.uuid4().hex)
+    balance_id = str(uuid.uuid4().hex) + "blnce"
+
     register_user  = user_records.insert({
-        "user_id": str(uuid.uuid4().hex),
+        "user_id": hash_id,
         "first_name": params.get('first_name'),
         "last_name": params.get('last_name'),
         "phone_number": params.get('phone_number'),
         "address": params.get('address'),
         "pin": hash_pin,
+        "rec_timestamp": timenow
+    })
+
+    balance_user  = balance_records.insert({
+        "balance_id": balance_id,
+        "user_id": hash_id,
+        "amount": 0,
         "rec_timestamp": timenow
     })
 
@@ -194,6 +204,9 @@ def update_profile():
         update_profile  = user_records.update(
                 {'user_id': validation["result"]["user_id"]},
                 {'$set': {
+                    "first_name": params.get('first_name'),
+                    "last_name": params.get('last_name'),
+                    "phone_number": params.get('phone_number'),
                     "address": params.get('address')
                 }}
         )
@@ -207,7 +220,7 @@ def update_profile():
             first_name=check_profile_updated.get('first_name'),
             last_name=check_profile_updated.get('last_name'),
             address=check_profile_updated.get('address'),
-            phone_number=int(check_profile_updated.get('phone_number')),
+            phone_number=check_profile_updated.get('phone_number'),
             updated_date=datetime.datetime.fromtimestamp(check_profile_updated.get('rec_timestamp')/1000).strftime('%Y-%m-%d %H:%M:%S')
         )
 
@@ -238,7 +251,7 @@ def topup():
         if validation.get('result') is None:
             return validation
 
-    check_balance  = topup_records.find_one({
+    check_balance  = balance_records.find_one({
         "user_id" : validation["result"]["user_id"]
     })
 
@@ -253,7 +266,7 @@ def topup():
         })
 
         balance_user  = balance_records.insert({
-            "balance_id": str(uuid.uuid4().hex),
+            "balance_id": str(uuid.uuid4().hex) + "blnce",
             "user_id": validation["result"]["user_id"],
             "amount": int(params.get('amount')),
             "rec_timestamp": timenow
@@ -287,8 +300,8 @@ def topup():
         response_data = dict(
             user_id=check_top_up_user.get('user_id'),
             amount_top_up=int(params.get('amount')),
-            balance_before=check_top_up_user.get('balance_before'),
-            balance_after=check_top_up_user.get('balance_after'),
+            balance_before=int(check_balance.get('amount')),
+            balance_after=int(check_balance.get('amount')) + int(params.get('amount')),
             created_date=datetime.datetime.fromtimestamp(check_top_up_user.get('rec_timestamp')/1000).strftime('%Y-%m-%d %H:%M:%S')
         )
 
@@ -437,6 +450,17 @@ def transfer():
                         {'user_id': check_balance.get('user_id')},
                         {'$set': {
                             "amount": amount_after
+                        }}
+            )
+
+            check_target = balance_records.find_one({
+                "user_id" : params.get('target_user')
+            })
+
+            target_topup = balance_records.update(
+                        {'user_id': check_target.get('user_id')},
+                        {'$set': {
+                            "amount": int(check_target.get('amount')) + int(params.get('amount'))
                         }}
             )
 
