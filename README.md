@@ -3,7 +3,7 @@
 
 **Install modules :** pip install -r requirements.txt
 
-Copy and import Tes SPIN Payment.postman_collection.json to your Postman
+Copy and import **Tes SPIN Payment.postman_collection.json** to your Postman
 
 **Run app :** python app.py
 
