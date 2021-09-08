@@ -1,0 +1,719 @@
+{
+	"info": {
+		"_postman_id": "10db0cdf-21c6-46ce-accb-d407607c4e1c",
+		"name": "Tes SPIN Payment",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\":\"new\",\n    \"last_name\":\"kurniawan\",\n    \"phone_number\":\"088888999911\",\n    \"address\":\"jalan jagakarsa lewat ciganjur\",\n    \"pin\":\"323770\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/register",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"register"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success Register User",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\":\"new\",\n    \"last_name\":\"kurniawan\",\n    \"phone_number\":\"088888999911\",\n    \"address\":\"jalan jagakarsa lewat ciganjur\",\n    \"pin\":\"323770\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/register",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"register"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "304"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 07 Sep 2021 10:10:01 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"SUCCESS\",\n    \"result\": {\n        \"address\": \"jalan jagakarsa lewat ciganjur\",\n        \"created_date\": \"2021-09-07 17:09:58\",\n        \"first_name\": \"new\",\n        \"last_name\": \"kurniawan\",\n        \"phone_number\": \"088888999911\",\n        \"pin\": \"526a784f755195356821e4c22fa88a7793788df191d1840a86731d3dafb73eed\",\n        \"user_id\": \"e796547eade441caa69e0c4d10b5d73d\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"phone_number\":\"088888999911\",\n    \"pin\":\"323770\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/login",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"login"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success Login",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"phone_number\":\"088888999911\",\n    \"pin\":\"323770\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/login",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"login"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "198"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Tue, 07 Sep 2021 10:14:01 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"SUCCESS\",\n    \"result\": {\n        \"access_token\": \"4f64acaa32fadd326dea44c2eccdeb41dee8f971ec58a6c406e03a9f71eede66\",\n        \"refresh_token\": \"a570c3b668bf9d497a442b07cc9011e951ba666a03f6ec953439f77f005fb798\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Update Profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "87a634dadc83480421e5166236515a988b729695c9a89a754212a752300f2e5a",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"first_name\":\"masnew\",\n    \"last_name\":\"kurniawanto\",\n    \"phone_number\":\"088888999911\",\n    \"address\":\"jalan jagakarsa lewat ciganjur belok depok\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/update-profile",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"update-profile"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Update Profile",
+					"originalRequest": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"first_name\":\"masnew\",\n    \"last_name\":\"kurniawanto\",\n    \"phone_number\":\"088888999911\",\n    \"address\":\"jalan jagakarsa lewat ciganjur belok depok\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "Success Update Profile",
+							"host": [
+								"Success Update Profile"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "248"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 08 Sep 2021 06:54:41 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"SUCCESS\",\n    \"result\": {\n        \"address\": \"jalan jagakarsa lewat ciganjur belok depok\",\n        \"first_name\": \"masnew\",\n        \"last_name\": \"kurniawanto\",\n        \"phone_number\": \"088888999911\",\n        \"updated_date\": \"2021-09-07 17:09:58\",\n        \"user_id\": \"e796547eade441caa69e0c4d10b5d73d\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Top up",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "03344ed0a4d7bb401c022c6498568abcd8c3a4dd91f43800e9c3719c7910c129",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\":50000\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/topup",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"topup"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success Top up",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\":50000\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/topup",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"topup"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "182"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 08 Sep 2021 07:22:25 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"SUCCESS\",\n    \"result\": {\n        \"amount_top_up\": 50000,\n        \"balance_after\": 95000,\n        \"balance_before\": 45000,\n        \"created_date\": \"2021-09-08 14:22:22\",\n        \"user_id\": \"054e463087e3429d8eb55b39820db3fd\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Pay",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "03344ed0a4d7bb401c022c6498568abcd8c3a4dd91f43800e9c3719c7910c129",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"amount\":15000,\n    \"remarks\":\"bayar jajan di kantin\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/pay",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"pay"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Failed Pay Balance Not Enough",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\":100000,\n    \"remarks\":\"bayar jajan di kantin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/pay",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"pay"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 08 Sep 2021 07:27:02 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Balance Not Enough\"\n}"
+				},
+				{
+					"name": "Success Pay",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"amount\":15000,\n    \"remarks\":\"bayar jajan di kantin\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/pay",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"pay"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "212"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 08 Sep 2021 07:28:17 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"SUCCESS\",\n    \"result\": {\n        \"amount\": 15000,\n        \"balance_after\": 80000,\n        \"balance_before\": 95000,\n        \"created_date\": \"2021-09-08 14:28:15\",\n        \"payment_id\": \"b5e98fadb7094565b3d282f31bcfc957\",\n        \"remarks\": \"bayar jajan di kantin\"\n    }\n}"
+				}
+			]
+		},
+		{
+			"name": "Transfer",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "03344ed0a4d7bb401c022c6498568abcd8c3a4dd91f43800e9c3719c7910c129",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"target_user\":\"1a6b8255eeb149808ded5719046160db\",\n    \"amount\":9000,\n    \"remarks\":\"buat beli snack\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "127.0.0.1:5000/transfer",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"transfer"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success Transfer",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"target_user\":\"1a6b8255eeb149808ded5719046160db\",\n    \"amount\":9000,\n    \"remarks\":\"buat beli snack\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/transfer",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"transfer"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "206"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 08 Sep 2021 07:36:54 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"SUCCESS\",\n    \"result\": {\n        \"amount\": 9000,\n        \"balance_after\": 71000,\n        \"balance_before\": 80000,\n        \"created_date\": \"2021-09-08 14:36:50\",\n        \"remarks\": \"buat beli snack\",\n        \"transfer_id\": \"a559d5703c0645f2a8070af0acd0509a\"\n    }\n}"
+				},
+				{
+					"name": "Failed Transfer Balance Not Enough",
+					"originalRequest": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"target_user\":\"1a6b8255eeb149808ded5719046160db\",\n    \"amount\":209000,\n    \"remarks\":\"buat beli bubur 20 porsi\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "127.0.0.1:5000/transfer",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"transfer"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "33"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 08 Sep 2021 07:37:54 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"Balance Not Enough\"\n}"
+				}
+			]
+		},
+		{
+			"name": "Report Transactions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "03344ed0a4d7bb401c022c6498568abcd8c3a4dd91f43800e9c3719c7910c129",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "127.0.0.1:5000/transactions",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"port": "5000",
+					"path": [
+						"transactions"
+					]
+				}
+			},
+			"response": [
+				{
+					"name": "Success Report Transactions",
+					"originalRequest": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "127.0.0.1:5000/transactions",
+							"host": [
+								"127",
+								"0",
+								"0",
+								"1"
+							],
+							"port": "5000",
+							"path": [
+								"transactions"
+							]
+						}
+					},
+					"status": "OK",
+					"code": 200,
+					"_postman_previewlanguage": "json",
+					"header": [
+						{
+							"key": "Content-Type",
+							"value": "application/json"
+						},
+						{
+							"key": "Content-Length",
+							"value": "967"
+						},
+						{
+							"key": "Server",
+							"value": "Werkzeug/2.0.1 Python/3.8.2"
+						},
+						{
+							"key": "Date",
+							"value": "Wed, 08 Sep 2021 07:39:14 GMT"
+						}
+					],
+					"cookie": [],
+					"body": "{\n    \"message\": \"SUCCESS\",\n    \"result\": [\n        {\n            \"amount\": 15000,\n            \"balance_after\": 80000,\n            \"balance_before\": 95000,\n            \"created_date\": \"2021-09-08 14:28:15\",\n            \"payment_id\": \"b5e98fadb7094565b3d282f31bcfc957\",\n            \"remarks\": \"bayar jajan di kantin\"\n        },\n        {\n            \"amount\": 9000,\n            \"balance_after\": 71000,\n            \"balance_before\": 80000,\n            \"created_date\": \"2021-09-08 14:36:50\",\n            \"remarks\": \"buat beli snack\",\n            \"transfer_id\": \"a559d5703c0645f2a8070af0acd0509a\"\n        },\n        {\n            \"amount\": 50000,\n            \"balance_after\": null,\n            \"balance_before\": null,\n            \"created_date\": \"2021-09-08 14:08:02\",\n            \"top_up_id\": \"0b269d1428604a16b445be2938718bd4\"\n        },\n        {\n            \"amount\": 20000,\n            \"balance_after\": 20000,\n            \"balance_before\": 0,\n            \"created_date\": \"2021-09-08 14:14:22\",\n            \"top_up_id\": \"982c04083dbb47d199b8a168b18687d3\"\n        },\n        {\n            \"amount\": 25000,\n            \"balance_after\": 45000,\n            \"balance_before\": 20000,\n            \"created_date\": \"2021-09-08 14:19:35\",\n            \"top_up_id\": \"48381c5f0bf947bd99d6f06b31e304ce\"\n        },\n        {\n            \"amount\": 50000,\n            \"balance_after\": 95000,\n            \"balance_before\": 45000,\n            \"created_date\": \"2021-09-08 14:22:22\",\n            \"top_up_id\": \"b9dfe2b6cbe34dc9b5bb706e604b1ebf\"\n        }\n    ]\n}"
+				}
+			]
+		}
+	]
+}
